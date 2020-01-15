@@ -85,7 +85,7 @@ func (h *receivedPacketTracker) hasNewMissingPackets() bool {
 		return false
 	}
 	highestRange := h.packetHistory.GetHighestAckRange()
-	return highestRange.Smallest >= h.lastAck.LargestAcked() && highestRange.Len() <= maxPacketsAfterNewMissing
+	return highestRange.Smallest >= h.lastAck.LargestAcked() && int(highestRange.Len()) <= maxPacketsAfterNewMissing
 }
 
 // maybeQueueAck queues an ACK, if necessary.
@@ -114,7 +114,7 @@ func (h *receivedPacketTracker) maybeQueueAck(packetNumber protocol.PacketNumber
 	if !h.ackQueued && shouldInstigateAck {
 		h.ackElicitingPacketsReceivedSinceLastAck++
 
-		if packetNumber > minReceivedBeforeAckDecimation {
+		if int(packetNumber) > minReceivedBeforeAckDecimation {
 			// ack up to 10 packets at once
 			if h.ackElicitingPacketsReceivedSinceLastAck >= ackElicitingPacketsBeforeAck {
 				h.ackQueued = true

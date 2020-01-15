@@ -2,19 +2,19 @@ package ackhandler
 
 import (
 	"fmt"
-	"time"
-
 	"github.com/lucas-clemente/quic-go/internal/congestion"
 	"github.com/lucas-clemente/quic-go/internal/protocol"
 	"github.com/lucas-clemente/quic-go/internal/utils"
 	"github.com/lucas-clemente/quic-go/internal/wire"
+	"qpep/shared"
+	"time"
 )
 
-const (
+var (
 	// initial maximum number of ack-eliciting packets received before sending an ack.
 	initialAckElicitingPacketsBeforeAck = 2
 	// number of ack-eliciting that an ACK is sent for
-	ackElicitingPacketsBeforeAck = 10
+	ackElicitingPacketsBeforeAck = shared.QuicConfiguration.AckElicitingPacketsBeforeAck
 	// 1/5 RTT delay when doing ack decimation
 	ackDecimationDelay = 1.0 / 4
 	// 1/8 RTT delay when doing ack decimation

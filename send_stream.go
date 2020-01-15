@@ -186,7 +186,6 @@ func (s *sendStream) popNewOrRetransmittedStreamFrame(maxBytes protocol.ByteCoun
 	f.Data = f.Data[:0]
 
 	hasMoreData := s.popNewStreamFrame(f, maxBytes)
-
 	if len(f.Data) == 0 && !f.FinBit {
 		f.PutBack()
 		return nil, hasMoreData
