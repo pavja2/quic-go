@@ -1,6 +1,9 @@
 package protocol
 
-import "time"
+import (
+	"qpep/shared"
+	"time"
+)
 
 // MaxPacketSizeIPv4 is the maximum packet size that we use for sending IPv4 packets.
 const MaxPacketSizeIPv4 = 1252
@@ -14,7 +17,7 @@ const defaultMaxCongestionWindowPackets = 1000
 const DefaultMaxCongestionWindow ByteCount = defaultMaxCongestionWindowPackets * DefaultTCPMSS
 
 // InitialCongestionWindow is the initial congestion window in QUIC packets
-const InitialCongestionWindow ByteCount = 32 * DefaultTCPMSS
+var InitialCongestionWindow ByteCount = ByteCount(shared.QuicConfiguration.InitialCongestionWindowPackets) * DefaultTCPMSS
 
 // MaxUndecryptablePackets limits the number of undecryptable packets that are queued in the session.
 const MaxUndecryptablePackets = 10
