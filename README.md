@@ -1,4 +1,9 @@
-# A FORKED QUIC implementation in pure Go
+#Fork Note
+Note: This is a fork of quic-go from the original lucas-clemente/quic-go repo on github.
+
+The principle difference in this fork is that it is possible to set some of the constant parameters of the QUIC implementation from within the QPEP proxy program.
+
+# A QUIC implementation in pure Go
 
 <img src="docs/quic.png" width=303 height=124>
 
