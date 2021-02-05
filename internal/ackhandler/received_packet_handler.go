@@ -16,13 +16,13 @@ var (
 	// number of ack-eliciting that an ACK is sent for
 	ackElicitingPacketsBeforeAck = shared.QuicConfiguration.AckElicitingPacketsBeforeAck
 	// 1/5 RTT delay when doing ack decimation
-	ackDecimationDelay = 1.0 / 4
+	ackDecimationDelay = shared.QuicConfiguration.VarAckDelay
 	// 1/8 RTT delay when doing ack decimation
-	shortAckDecimationDelay = 1.0 / 8
+	shortAckDecimationDelay = shared.QuicConfiguration.VarAckDelay / 2
 	// Minimum number of packets received before ack decimation is enabled.
 	// This intends to avoid the beginning of slow start, when CWNDs may be
 	// rapidly increasing.
-	minReceivedBeforeAckDecimation = 100
+	minReceivedBeforeAckDecimation = shared.QuicConfiguration.MinReceivedBeforeAckDecimation
 	// Maximum number of packets to ack immediately after a missing packet for
 	// fast retransmission to kick in at the sender.  This limit is created to
 	// reduce the number of acks sent that have no benefit for fast retransmission.
